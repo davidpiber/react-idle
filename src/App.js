@@ -21,7 +21,8 @@ class App extends Component {
         <IdleTimeout 
            timeout={5000}
            onTimeout= {this.testFunction}
-           events= {['mousedown','keyDown']} />
+           events= {['mousedown','keydown']}
+           elementId={'root'} />
       </div>
     );
   }
