@@ -14,12 +14,11 @@ class IdleTimeout extends Component {
     }
 
     componentDidMount() {
-        const { elementId, events } = this.props;
-        const element = document.getElementById(elementId);
+        const element = document.getElementById(this.props.elementId);
 
         if (element) {
             this.element = element;
-            events.forEach(e => element.addEventListener(e, this.handleEvent));
+            this.props.events.forEach(e => element.addEventListener(e, this.handleEvent));
             this.resetTimer();
         }
 

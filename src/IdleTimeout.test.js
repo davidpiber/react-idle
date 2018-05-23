@@ -1,14 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import IdleTimeout from './IdleTimeout';
+import { shallow } from 'enzyme';
+import Enzyme from 'enzyme';
 
-it('renders IdleTimeout without crashing', () => {
-  const div = document.createElement('div');
-  const testFunction = () => console.log('called IdleTimeout function');
-  ReactDOM.render(<IdleTimeout 
-    timeout={5000}
-    onTimeout= {testFunction}
-    events= {['mousedown','keydown']}
-    elementId={'root'} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
+
+describe('IdleTimeout', () => {
+    const testFunction = () => console.log('onTimeout function.');
+    const idleTimeout = shallow(<IdleTimeout 
+        timeout={5000}
+        onTimeout= {testFunction}
+        events= {['mousedown','keydown']}
+        elementId={'root'} />);
+    
+    it('Should render a empty component', () => {
+        expect(idleTimeout.text()).toEqual('');
+    });
 });
